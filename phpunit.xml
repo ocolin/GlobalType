@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        colors="true"
+        stopOnFailure="true"
+        beStrictAboutChangesToGlobalState="true"
+        cacheDirectory=".phpunit.cache"
+        displayDetailsOnTestsThatTriggerWarnings="true"
+>
+    <testsuites>
+        <testsuite name="tests">
+            <file>tests/TestStrings.php</file>
+            <file>tests/TestInts.php</file>
+            <file>tests/TestFloats.php</file>
+            <file>tests/TestArrays.php</file>
+            <file>tests/TestObjects.php</file>
+            <file>tests/TestCookies.php</file>
+            <file>tests/TestEnv.php</file>
+            <file>tests/TestFiles.php</file>
+            <file>tests/TestGlobals.php</file>
+            <file>tests/TestPost.php</file>
+            <file>tests/TestRequest.php</file>
+            <file>tests/TestServer.php</file>
+            <file>tests/TestSession.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
