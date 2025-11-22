@@ -9,7 +9,7 @@
     "autoload": {
         "psr-4": {
             "Ocolin\\GlobalType\\": "src/",
-            "Ocolin\\GlobaleType\\Tests": "tests/"
+            "Ocolin\\GlobaleType\\Tests\\": "tests/"
         }
     },
     "authors": [
