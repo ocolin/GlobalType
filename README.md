@@ -50,4 +50,4 @@ The input parameter is always the name of the global variable. The type of globa
 
 ```
 $output = Ocolin\GlobalType\GT::{global name}{type}{null}( name: '{var name}');
-111
+```
