@@ -142,6 +142,32 @@ class TestCookies extends TestCase
         self::assertNull( $output );
     }
 
+    public function testBoolGood() : void
+    {
+        $output = GT::cookieBool( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolBad() : void
+    {
+        $output = GT::cookieBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolNullGood() : void
+    {
+        $output = GT::cookieBoolNull( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolNullBad() : void
+    {
+        $output = GT::cookieBoolNull( name: 'bool_bad' );
+        self::assertNull( $output );
+    }
 
 
     public static function setUpBeforeClass() : void
@@ -156,5 +182,7 @@ class TestCookies extends TestCase
         $_COOKIE['array_bad'] = 'bad';
         $_COOKIE['object_good'] = new stdClass();
         $_COOKIE['object_bad'] = '';
+        $_COOKIE['bool_good'] = true;
+        $_COOKIE['bool_bad'] = [];
     }
 }

@@ -139,4 +139,32 @@ trait PostTrait
     {
         return self::callObjectNull( value: $_POST[$name] );
     }
+
+
+
+/* POST BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function postBool( string $name ) : bool
+    {
+        return self::callBool( value: $_POST[$name] );
+    }
+
+
+
+/* POST BOOL NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool|null Variable or null if not a boolean.
+     */
+    public static function postBoolNull( string $name ) : bool | null
+    {
+        return self::callBoolNull( value: $_POST[$name] );
+    }
 }

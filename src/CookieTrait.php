@@ -139,4 +139,32 @@ trait CookieTrait
     {
         return self::callObjectNull( value: $_COOKIE[$name] );
     }
+
+
+
+/* COOKIE BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function cookieBool( string $name ) : bool
+    {
+        return self::callBool( value: $_COOKIE[$name] );
+    }
+
+
+
+/* COOKIE BOOL NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool|null Variable or null if not a boolean.
+     */
+    public static function cookieBoolNull( string $name ) : bool | null
+    {
+        return self::callBoolNull( value: $_COOKIE[$name] );
+    }
 }

@@ -13,6 +13,7 @@
             <file>tests/TestFloats.php</file>
             <file>tests/TestArrays.php</file>
             <file>tests/TestObjects.php</file>
+            <file>tests/TestBool.php</file>
             <file>tests/TestCookies.php</file>
             <file>tests/TestEnv.php</file>
             <file>tests/TestFiles.php</file>

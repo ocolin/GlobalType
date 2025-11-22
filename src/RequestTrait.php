@@ -140,4 +140,32 @@ trait RequestTrait
     {
         return self::callObjectNull( value: $_REQUEST[$name] );
     }
+
+
+
+/* REQUEST BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function requestBool( string $name ) : bool
+    {
+        return self::callBool( value: $_REQUEST[$name] );
+    }
+
+
+
+/* REQUEST BOOL NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool|null Variable or null if not a boolean.
+     */
+    public static function requestBoolNull( string $name ) : bool | null
+    {
+        return self::callBoolNull( value: $_REQUEST[$name] );
+    }
 }

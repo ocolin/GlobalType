@@ -139,4 +139,32 @@ trait ServerTrait
     {
         return self::callObjectNull( value: $_SERVER[$name] );
     }
+
+
+
+/* SERVER BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function serverBool( string $name ) : bool
+    {
+        return self::callBool( value: $_SERVER[$name] );
+    }
+
+
+
+/* SERVER BOOL NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool|null Variable or null if not a boolean.
+     */
+    public static function serverBoolNull( string $name ) : bool | null
+    {
+        return self::callBoolNull( value: $_SERVER[$name] );
+    }
 }

@@ -139,4 +139,32 @@ trait EnvTrait
     {
         return self::callObjectNull( value: $_ENV[$name] );
     }
+
+
+
+/* ENV BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function envBool( string $name ) : bool
+    {
+        return self::callBool( value: $_ENV[$name] );
+    }
+
+
+
+/* ENV BOOL NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool|null Variable or null if not a boolean.
+     */
+    public static function envBoolNull( string $name ) : bool | null
+    {
+        return self::callBoolNull( value: $_ENV[$name] );
+    }
 }

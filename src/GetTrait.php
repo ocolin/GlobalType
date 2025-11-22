@@ -140,4 +140,31 @@ trait GetTrait
         return self::callObjectNull( value: $_GET[$name] );
     }
 
+
+
+/* GET BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function getBool( string $name ) : bool
+    {
+        return self::callBool( value: $_GET[$name] );
+    }
+
+
+
+/* GET BOOL NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool|null Variable or null if not a boolean.
+     */
+    public static function getBoolNull( string $name ) : bool | null
+    {
+        return self::callBoolNull( value: $_GET[$name] );
+    }
 }

@@ -142,7 +142,32 @@ class TestRequest extends TestCase
         self::assertNull( $output );
     }
 
+    public function testBoolGood() : void
+    {
+        $output = GT::requestBool( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
 
+    public function testBoolBad() : void
+    {
+        $output = GT::requestBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolNullGood() : void
+    {
+        $output = GT::requestBoolNull( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolNullBad() : void
+    {
+        $output = GT::requestBoolNull( name: 'bool_bad' );
+        self::assertNull( $output );
+    }
 
     public static function setUpBeforeClass() : void
     {
@@ -156,5 +181,7 @@ class TestRequest extends TestCase
         $_REQUEST['array_bad'] = 'bad';
         $_REQUEST['object_good'] = new stdClass();
         $_REQUEST['object_bad'] = '';
+        $_REQUEST['bool_good'] = true;
+        $_REQUEST['bool_bad'] = [];
     }
 }

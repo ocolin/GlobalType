@@ -142,7 +142,32 @@ class TestSession extends TestCase
         self::assertNull( $output );
     }
 
+    public function testBoolGood() : void
+    {
+        $output = GT::sessionBool( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
 
+    public function testBoolBad() : void
+    {
+        $output = GT::sessionBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolNullGood() : void
+    {
+        $output = GT::sessionBoolNull( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolNullBad() : void
+    {
+        $output = GT::sessionBoolNull( name: 'bool_bad' );
+        self::assertNull( $output );
+    }
 
     public static function setUpBeforeClass() : void
     {
@@ -156,5 +181,7 @@ class TestSession extends TestCase
         $_SESSION['array_bad'] = 'bad';
         $_SESSION['object_good'] = new stdClass();
         $_SESSION['object_bad'] = '';
+        $_SESSION['bool_good'] = true;
+        $_SESSION['bool_bad'] = [];
     }
 }

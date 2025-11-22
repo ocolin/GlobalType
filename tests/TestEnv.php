@@ -142,6 +142,33 @@ class TestEnv extends TestCase
         self::assertNull( $output );
     }
 
+    public function testBoolGood() : void
+    {
+        $output = GT::envBool( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolBad() : void
+    {
+        $output = GT::envBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolNullGood() : void
+    {
+        $output = GT::envBoolNull( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolNullBad() : void
+    {
+        $output = GT::envBoolNull( name: 'bool_bad' );
+        self::assertNull( $output );
+    }
+
 
 
     public static function setUpBeforeClass() : void
@@ -156,5 +183,7 @@ class TestEnv extends TestCase
         $_ENV['array_bad'] = 'bad';
         $_ENV['object_good'] = new stdClass();
         $_ENV['object_bad'] = '';
+        $_ENV['bool_good'] = true;
+        $_ENV['bool_bad'] = [];
     }
 }

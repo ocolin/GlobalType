@@ -177,4 +177,36 @@ use FilesTrait;
 
         return $value;
     }
+
+
+
+/* GET BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param mixed $value Variable to check.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function callBool( mixed $value ) : bool
+    {
+        if( !isset( $value ) OR !is_bool( $value )) { return false; }
+
+        return $value;
+    }
+
+
+
+/* GET BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param mixed $value Value to check.
+     * @return bool|null Variable or null if not bool.
+     */
+    public static function callBoolNull( mixed $value ) : bool | null
+    {
+        if( !isset( $value ) OR !is_bool( $value )) { return null; }
+
+        return $value;
+    }
 }

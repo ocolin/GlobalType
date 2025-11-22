@@ -143,6 +143,33 @@ class TestPost extends TestCase
     }
 
 
+    public function testBoolGood() : void
+    {
+        $output = GT::postBool( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolBad() : void
+    {
+        $output = GT::postBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolNullGood() : void
+    {
+        $output = GT::postBoolNull( name: 'bool_good' );
+        self::assertIsBool( $output );
+        self::assertTrue( $output );
+    }
+
+    public function testBoolNullBad() : void
+    {
+        $output = GT::postBoolNull( name: 'bool_bad' );
+        self::assertNull( $output );
+    }
+
 
     public static function setUpBeforeClass() : void
     {
@@ -156,5 +183,7 @@ class TestPost extends TestCase
         $_POST['array_bad'] = 'bad';
         $_POST['object_good'] = new stdClass();
         $_POST['object_bad'] = '';
+        $_POST['bool_good'] = true;
+        $_POST['bool_bad'] = [];
     }
 }

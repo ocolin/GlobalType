@@ -139,4 +139,32 @@ trait SessionTrait
     {
         return self::callObjectNull( value: $_SESSION[$name] );
     }
+
+
+
+/* SESSION BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool Variable or false if not a boolean.
+     */
+    public static function sessionBool( string $name ) : bool
+    {
+        return self::callBool( value: $_SESSION[$name] );
+    }
+
+
+
+/* SESSION BOOL NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of variable.
+     * @return bool|null Variable or null if not a boolean.
+     */
+    public static function sessionBoolNull( string $name ) : bool | null
+    {
+        return self::callBoolNull( value: $_SESSION[$name] );
+    }
 }

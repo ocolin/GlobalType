@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace Ocolin\GlobalType\tests;
+namespace Ocolin\GlobalType\Tests;
 
 use Ocolin\GlobalType\GT;
 use PHPUnit\Framework\TestCase;
