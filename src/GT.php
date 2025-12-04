@@ -67,9 +67,9 @@ use FilesTrait;
      */
     public static function callInt( mixed $value ) : int
     {
-        if( !isset( $value ) OR !is_int( $value )) { return 0; }
+        if( is_int( $value ) OR is_numeric( $value ) ) { return (int)$value; }
 
-        return $value;
+        return 0;
     }
 
 
@@ -82,9 +82,9 @@ use FilesTrait;
      */
     public static function callIntNull( mixed $value ) : int | null
     {
-        if( !isset( $value ) OR !is_int( $value )) { return null; }
+        if( is_int( $value ) OR is_numeric( $value ) ) { return (int)$value; }
 
-        return $value;
+        return null;
     }
 
 
@@ -97,9 +97,9 @@ use FilesTrait;
      */
     public static function callFloat( mixed $value ) : float
     {
-        if( !isset( $value ) OR !is_float( $value )) { return 0; }
+        if( is_float( $value ) OR is_numeric( $value )) { return (float)$value; }
 
-        return $value;
+        return 0;
     }
 
 
@@ -112,9 +112,9 @@ use FilesTrait;
      */
     public static function callFloatNull( mixed $value ) : float | null
     {
-        if( !isset( $value ) OR !is_float( $value )) { return null; }
+        if( is_float( $value ) OR is_numeric( $value )) { return (float)$value; }
 
-        return $value;
+        return null;
     }
 
 

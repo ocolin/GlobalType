@@ -30,6 +30,14 @@ class TestFloats extends TestCase
         self::assertEquals( 123.5, $output );
     }
 
+    public function testFloatString() : void
+    {
+        $output = GT::callFloatNull( value: "123.5" );
+        self::assertIsFloat( $output );
+        self::assertEquals( 123.5, $output );
+    }
+
+
     public function testFloatNullBad() : void
     {
         $output = GT::callFloatNull( value: [] );
