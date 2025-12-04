@@ -22,6 +22,7 @@
             <file>tests/TestRequest.php</file>
             <file>tests/TestServer.php</file>
             <file>tests/TestSession.php</file>
+            <file>tests/TestGet.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

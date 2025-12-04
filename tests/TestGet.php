@@ -45,6 +45,13 @@ class TestGet extends TestCase
         self::assertEquals( 123, $output );
     }
 
+    public function testIntString() : void
+    {
+        $output = GT::getInt( name: 'int_string' );
+        self::assertIsInt( $output );
+        self::assertEquals( 123, $output );
+    }
+
     public function testIntBad() : void
     {
         $output = GT::getInt( name: 'int_bad' );
@@ -185,5 +192,6 @@ class TestGet extends TestCase
         $_GET['object_bad'] = '';
         $_GET['bool_good'] = true;
         $_GET['bool_bad'] = [];
+        $_GET['int_string'] = "123";
     }
 }
