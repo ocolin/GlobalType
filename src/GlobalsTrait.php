@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace Ocolin\GlobalType;
 
+use stdClass;
+
 trait GlobalsTrait
 {
 
@@ -16,6 +18,7 @@ trait GlobalsTrait
      */
     public static function globalsString( string $name ) : string
     {
+        if( !isset( $GLOBALS[ $name ] )) { return ''; }
         return self::callString( value: $GLOBALS[$name] );
     }
 
@@ -29,6 +32,7 @@ trait GlobalsTrait
      */
     public static function globalsStringNull( string $name ) : string | null
     {
+        if( !isset( $GLOBALS[ $name ] )) { return null; }
         return self::callStringNull( value: $GLOBALS[$name] );
     }
 
@@ -43,6 +47,7 @@ trait GlobalsTrait
      */
     public static function globalsInt( string $name ) : int
     {
+        if( !isset( $GLOBALS[ $name ] )) { return 0; }
         return self::callInt( value: $GLOBALS[$name] );
     }
 
@@ -56,6 +61,7 @@ trait GlobalsTrait
      */
     public static function globalsIntNull( string $name ) : int | null
     {
+        if( !isset( $GLOBALS[ $name ] )) { return null; }
         return self::callIntNull( value: $GLOBALS[$name] );
     }
 
@@ -70,6 +76,7 @@ trait GlobalsTrait
      */
     public static function globalsFloat( string $name ) : float
     {
+        if( !isset( $GLOBALS[ $name ] )) { return 0; }
         return self::callFloat( value: $GLOBALS[$name] );
     }
 
@@ -83,6 +90,7 @@ trait GlobalsTrait
      */
     public static function globalsFloatNull( string $name ) : float | null
     {
+        if( !isset( $GLOBALS[ $name ] )) { return null; }
         return self::callFloatNull( value: $GLOBALS[$name] );
     }
 
@@ -97,6 +105,7 @@ trait GlobalsTrait
      */
     public static function globalsArray( string $name ) : array
     {
+        if( !isset( $GLOBALS[ $name ] )) { return []; }
         return self::callArray( value: $GLOBALS[$name] );
     }
 
@@ -110,6 +119,7 @@ trait GlobalsTrait
      */
     public static function globalsArrayNull( string $name ) : array | null
     {
+        if( !isset( $GLOBALS[ $name ] )) { return null; }
         return self::callArrayNull( value: $GLOBALS[$name] );
     }
 
@@ -124,6 +134,7 @@ trait GlobalsTrait
      */
     public static function globalsObject( string $name ) : object
     {
+        if( !isset( $GLOBALS[ $name ] )) { return new stdClass(); }
         return self::callObject( value: $GLOBALS[$name] );
     }
 
@@ -137,6 +148,7 @@ trait GlobalsTrait
      */
     public static function globalsObjectNull( string $name ) : object | null
     {
+        if( !isset( $GLOBALS[ $name ] )) { return null; }
         return self::callObjectNull( value: $GLOBALS[$name] );
     }
 
@@ -151,6 +163,7 @@ trait GlobalsTrait
      */
     public static function globalsBool( string $name ) : bool
     {
+        if( !isset( $GLOBALS[ $name ] )) { return false; }
         return self::callBool( value: $GLOBALS[$name] );
     }
 
@@ -165,6 +178,7 @@ trait GlobalsTrait
      */
     public static function globalsBoolNull( string $name ) : bool | null
     {
+        if( !isset( $GLOBALS[ $name ] )) { return null; }
         return self::callBoolNull( value: $GLOBALS[$name] );
     }
 }

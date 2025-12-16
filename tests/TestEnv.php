@@ -24,6 +24,13 @@ class TestEnv extends TestCase
         self::assertEmpty( $output );
     }
 
+    public function testStringMissing() : void
+    {
+        $output = GT::envString( name: 'string_missing' );
+        self::assertIsString( $output );
+        self::assertEmpty( $output );
+    }
+
     public function testStringNullGood() : void
     {
         $output = GT::envStringNull( name: 'string_good' );
@@ -50,7 +57,13 @@ class TestEnv extends TestCase
         $output = GT::envInt( name: 'int_bad' );
         self::assertIsInt( $output );
         self::assertEquals( 0, $output );
+    }
 
+    public function testIntMissing() : void
+    {
+        $output = GT::envInt( name: 'int_missing' );
+        self::assertIsInt( $output );
+        self::assertEquals( 0, $output );
     }
 
     public function testIntNullGood() : void
@@ -80,6 +93,13 @@ class TestEnv extends TestCase
         self::assertEquals( 0, $output );
     }
 
+    public function testFloatMissing() : void
+    {
+        $output = GT::envFloat( name: 'float_missing' );
+        self::assertIsFloat( $output );
+        self::assertEquals( 0, $output );
+    }
+
     public function testFloatNullGood() : void
     {
         $output = GT::envFloatNull( name: 'float_good' );
@@ -102,6 +122,12 @@ class TestEnv extends TestCase
     public function testArrayBad() : void
     {
         $output = GT::envArray( name: 'array_bad' );
+        self::assertIsArray( $output );
+    }
+
+    public function testArrayMissing() : void
+    {
+        $output = GT::envArray( name: 'array_missing' );
         self::assertIsArray( $output );
     }
 
@@ -130,6 +156,12 @@ class TestEnv extends TestCase
         self::assertIsObject( $output );
     }
 
+    public function testObjectMissing() : void
+    {
+        $output = GT::envObject( name: 'object_missing' );
+        self::assertIsObject( $output );
+    }
+
     public function testObjectNullGood() : void
     {
         $output = GT::envObjectNull( name: 'object_good' );
@@ -152,6 +184,13 @@ class TestEnv extends TestCase
     public function testBoolBad() : void
     {
         $output = GT::envBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolMissing() : void
+    {
+        $output = GT::envBool( name: 'bool_missing' );
         self::assertIsBool( $output );
         self::assertFalse( $output );
     }

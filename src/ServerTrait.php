@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace Ocolin\GlobalType;
 
+use stdClass;
+
 trait ServerTrait
 {
 
@@ -16,6 +18,7 @@ trait ServerTrait
      */
     public static function serverString( string $name ) : string
     {
+        if( !isset( $_SERVER[ $name ] )) { return ''; }
         return self::callString( value: $_SERVER[$name] );
     }
 
@@ -29,6 +32,7 @@ trait ServerTrait
      */
     public static function serverStringNull( string $name ) : string | null
     {
+        if( !isset( $_SERVER[ $name ] )) { return null; }
         return self::callStringNull( value: $_SERVER[$name] );
     }
 
@@ -43,6 +47,7 @@ trait ServerTrait
      */
     public static function serverInt( string $name ) : int
     {
+        if( !isset( $_SERVER[ $name ] )) { return 0; }
         return self::callInt( value: $_SERVER[$name] );
     }
 
@@ -56,6 +61,7 @@ trait ServerTrait
      */
     public static function serverIntNull( string $name ) : int | null
     {
+        if( !isset( $_SERVER[ $name ] )) { return null; }
         return self::callIntNull( value: $_SERVER[$name] );
     }
 
@@ -70,6 +76,7 @@ trait ServerTrait
      */
     public static function serverFloat( string $name ) : float
     {
+        if( !isset( $_SERVER[ $name ] )) { return 0; }
         return self::callFloat( value: $_SERVER[$name] );
     }
 
@@ -83,6 +90,7 @@ trait ServerTrait
      */
     public static function serverFloatNull( string $name ) : float | null
     {
+        if( !isset( $_SERVER[ $name ] )) { return null; }
         return self::callFloatNull( value: $_SERVER[$name] );
     }
 
@@ -97,6 +105,7 @@ trait ServerTrait
      */
     public static function serverArray( string $name ) : array
     {
+        if( !isset( $_SERVER[ $name ] )) { return []; }
         return self::callArray( value: $_SERVER[$name] );
     }
 
@@ -110,6 +119,7 @@ trait ServerTrait
      */
     public static function serverArrayNull( string $name ) : array | null
     {
+        if( !isset( $_SERVER[ $name ] )) { return null; }
         return self::callArrayNull( value: $_SERVER[$name] );
     }
 
@@ -124,6 +134,7 @@ trait ServerTrait
      */
     public static function serverObject( string $name ) : object
     {
+        if( !isset( $_SERVER[ $name ] )) { return new stdClass(); }
         return self::callObject( value: $_SERVER[$name] );
     }
 
@@ -137,6 +148,7 @@ trait ServerTrait
      */
     public static function serverObjectNull( string $name ) : object | null
     {
+        if( !isset( $_SERVER[ $name ] )) { return null; }
         return self::callObjectNull( value: $_SERVER[$name] );
     }
 
@@ -151,6 +163,7 @@ trait ServerTrait
      */
     public static function serverBool( string $name ) : bool
     {
+        if( !isset( $_SERVER[ $name ] )) { return false; }
         return self::callBool( value: $_SERVER[$name] );
     }
 
@@ -165,6 +178,7 @@ trait ServerTrait
      */
     public static function serverBoolNull( string $name ) : bool | null
     {
+        if( !isset( $_SERVER[ $name ] )) { return null; }
         return self::callBoolNull( value: $_SERVER[$name] );
     }
 }

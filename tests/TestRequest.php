@@ -24,6 +24,13 @@ class TestRequest extends TestCase
         self::assertEmpty( $output );
     }
 
+    public function testStringMissing() : void
+    {
+        $output = GT::requestString( name: 'string_missing' );
+        self::assertIsString( $output );
+        self::assertEmpty( $output );
+    }
+
     public function testStringNullGood() : void
     {
         $output = GT::requestStringNull( name: 'string_good' );
@@ -50,7 +57,13 @@ class TestRequest extends TestCase
         $output = GT::requestInt( name: 'int_bad' );
         self::assertIsInt( $output );
         self::assertEquals( 0, $output );
+    }
 
+    public function testIntMissing() : void
+    {
+        $output = GT::requestInt( name: 'int_missing' );
+        self::assertIsInt( $output );
+        self::assertEquals( 0, $output );
     }
 
     public function testIntNullGood() : void
@@ -80,6 +93,13 @@ class TestRequest extends TestCase
         self::assertEquals( 0, $output );
     }
 
+    public function testFloatMissing() : void
+    {
+        $output = GT::requestFloat( name: 'float_missing' );
+        self::assertIsFloat( $output );
+        self::assertEquals( 0, $output );
+    }
+
     public function testFloatNullGood() : void
     {
         $output = GT::requestFloatNull( name: 'float_good' );
@@ -102,6 +122,12 @@ class TestRequest extends TestCase
     public function testArrayBad() : void
     {
         $output = GT::requestArray( name: 'array_bad' );
+        self::assertIsArray( $output );
+    }
+
+    public function testArrayMissing() : void
+    {
+        $output = GT::requestArray( name: 'array_missing' );
         self::assertIsArray( $output );
     }
 
@@ -130,6 +156,12 @@ class TestRequest extends TestCase
         self::assertIsObject( $output );
     }
 
+    public function testObjectMissing() : void
+    {
+        $output = GT::requestObject( name: 'object_missing' );
+        self::assertIsObject( $output );
+    }
+
     public function testObjectNullGood() : void
     {
         $output = GT::requestObjectNull( name: 'object_good' );
@@ -152,6 +184,13 @@ class TestRequest extends TestCase
     public function testBoolBad() : void
     {
         $output = GT::requestBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolMissing() : void
+    {
+        $output = GT::requestBool( name: 'bool_missing' );
         self::assertIsBool( $output );
         self::assertFalse( $output );
     }

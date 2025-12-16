@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace Ocolin\GlobalType;
 
+use stdClass;
+
 trait PostTrait
 {
 
@@ -16,6 +18,7 @@ trait PostTrait
      */
     public static function postString( string $name ) : string
     {
+        if( !isset( $_POST[ $name ] )) { return ''; }
         return self::callString( value: $_POST[$name] );
     }
 
@@ -29,6 +32,7 @@ trait PostTrait
      */
     public static function postStringNull( string $name ) : string | null
     {
+        if( !isset( $_POST[ $name ] )) { return null; }
         return self::callStringNull( value: $_POST[$name] );
     }
 
@@ -43,6 +47,7 @@ trait PostTrait
      */
     public static function postInt( string $name ) : int
     {
+        if( !isset( $_POST[ $name ] )) { return 0; }
         return self::callInt( value: $_POST[$name] );
     }
 
@@ -56,6 +61,7 @@ trait PostTrait
      */
     public static function postIntNull( string $name ) : int | null
     {
+        if( !isset( $_POST[ $name ] )) { return null; }
         return self::callIntNull( value: $_POST[$name] );
     }
 
@@ -70,6 +76,7 @@ trait PostTrait
      */
     public static function postFloat( string $name ) : float
     {
+        if( !isset( $_POST[ $name ] )) { return 0; }
         return self::callFloat( value: $_POST[$name] );
     }
 
@@ -83,6 +90,7 @@ trait PostTrait
      */
     public static function postFloatNull( string $name ) : float | null
     {
+        if( !isset( $_POST[ $name ] )) { return null; }
         return self::callFloatNull( value: $_POST[$name] );
     }
 
@@ -97,6 +105,7 @@ trait PostTrait
      */
     public static function postArray( string $name ) : array
     {
+        if( !isset( $_POST[ $name ] )) { return []; }
         return self::callArray( value: $_POST[$name] );
     }
 
@@ -110,6 +119,7 @@ trait PostTrait
      */
     public static function postArrayNull( string $name ) : array | null
     {
+        if( !isset( $_POST[ $name ] )) { return null; }
         return self::callArrayNull( value: $_POST[$name] );
     }
 
@@ -124,6 +134,7 @@ trait PostTrait
      */
     public static function postObject( string $name ) : object
     {
+        if( !isset( $_POST[ $name ] )) { return new stdClass(); }
         return self::callObject( value: $_POST[$name] );
     }
 
@@ -137,6 +148,7 @@ trait PostTrait
      */
     public static function postObjectNull( string $name ) : object | null
     {
+        if( !isset( $_POST[ $name ] )) { return null; }
         return self::callObjectNull( value: $_POST[$name] );
     }
 
@@ -151,6 +163,7 @@ trait PostTrait
      */
     public static function postBool( string $name ) : bool
     {
+        if( !isset( $_POST[ $name ] )) { return false; }
         return self::callBool( value: $_POST[$name] );
     }
 
@@ -165,6 +178,7 @@ trait PostTrait
      */
     public static function postBoolNull( string $name ) : bool | null
     {
+        if( !isset( $_POST[ $name ] )) { return null; }
         return self::callBoolNull( value: $_POST[$name] );
     }
 }

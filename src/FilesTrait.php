@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace Ocolin\GlobalType;
 
+use stdClass;
+
 trait FilesTrait
 {
 
@@ -16,7 +18,8 @@ trait FilesTrait
      */
     public static function filesString( string $name ) : string
     {
-        return self::callString( value: $_FILES[$name] );
+        if( !isset( $_FILES[ $name ] )) { return ''; }
+        return self::callString( value: $_FILES[ $name ] );
     }
 
 
@@ -29,6 +32,7 @@ trait FilesTrait
      */
     public static function filesStringNull( string $name ) : string | null
     {
+        if( !isset( $_FILES[ $name ] )) { return null; }
         return self::callStringNull( value: $_FILES[$name] );
     }
 
@@ -43,6 +47,7 @@ trait FilesTrait
      */
     public static function filesInt( string $name ) : int
     {
+        if( !isset( $_FILES[ $name ] )) { return 0; }
         return self::callInt( value: $_FILES[$name] );
     }
 
@@ -56,6 +61,7 @@ trait FilesTrait
      */
     public static function filesIntNull( string $name ) : int | null
     {
+        if( !isset( $_FILES[ $name ] )) { return null; }
         return self::callIntNull( value: $_FILES[$name] );
     }
 
@@ -70,6 +76,7 @@ trait FilesTrait
      */
     public static function filesFloat( string $name ) : float
     {
+        if( !isset( $_FILES[ $name ] )) { return 0; }
         return self::callFloat( value: $_FILES[$name] );
     }
 
@@ -83,6 +90,7 @@ trait FilesTrait
      */
     public static function filesFloatNull( string $name ) : float | null
     {
+        if( !isset( $_FILES[ $name ] )) { return null; }
         return self::callFloatNull( value: $_FILES[$name] );
     }
 
@@ -97,6 +105,7 @@ trait FilesTrait
      */
     public static function filesArray( string $name ) : array
     {
+        if( !isset( $_FILES[ $name ] )) { return []; }
         return self::callArray( value: $_FILES[$name] );
     }
 
@@ -110,6 +119,7 @@ trait FilesTrait
      */
     public static function filesArrayNull( string $name ) : array | null
     {
+        if( !isset( $_FILES[ $name ] )) { return null; }
         return self::callArrayNull( value: $_FILES[$name] );
     }
 
@@ -124,6 +134,7 @@ trait FilesTrait
      */
     public static function filesObject( string $name ) : object
     {
+        if( !isset( $_FILES[ $name ] )) { return new stdClass(); }
         return self::callObject( value: $_FILES[$name] );
     }
 
@@ -137,6 +148,7 @@ trait FilesTrait
      */
     public static function filesObjectNull( string $name ) : object | null
     {
+        if( !isset( $_FILES[ $name ] )) { return null; }
         return self::callObjectNull( value: $_FILES[$name] );
     }
 
@@ -151,6 +163,7 @@ trait FilesTrait
      */
     public static function filesBool( string $name ) : bool
     {
+        if( !isset( $_FILES[ $name ] )) { return false; }
         return self::callBool( value: $_FILES[$name] );
     }
 
@@ -165,6 +178,7 @@ trait FilesTrait
      */
     public static function filesBoolNull( string $name ) : bool | null
     {
+        if( !isset( $_FILES[ $name ] )) { return null; }
         return self::callBoolNull( value: $_FILES[$name] );
     }
 }

@@ -24,6 +24,13 @@ class TestGet extends TestCase
         self::assertEmpty( $output );
     }
 
+    public function testStringMissing() : void
+    {
+        $output = GT::getString( name: 'missing_string' );
+        self::assertIsString( $output );
+        self::assertEmpty( $output );
+    }
+
     public function testStringNullGood() : void
     {
         $output = GT::getStringNull( name: 'string_good' );
@@ -57,7 +64,13 @@ class TestGet extends TestCase
         $output = GT::getInt( name: 'int_bad' );
         self::assertIsInt( $output );
         self::assertEquals( 0, $output );
+    }
 
+    public function testIntMissing() : void
+    {
+        $output = GT::getInt( name: 'int_missing' );
+        self::assertIsInt( $output );
+        self::assertEquals( 0, $output );
     }
 
     public function testIntNullGood() : void
@@ -87,6 +100,13 @@ class TestGet extends TestCase
         self::assertEquals( 0, $output );
     }
 
+    public function testFloatMissing() : void
+    {
+        $output = GT::getFloat( name: 'float_missing' );
+        self::assertIsFloat( $output );
+        self::assertEquals( 0, $output );
+    }
+
     public function testFloatNullGood() : void
     {
         $output = GT::getFloatNull( name: 'float_good' );
@@ -109,6 +129,12 @@ class TestGet extends TestCase
     public function testArrayBad() : void
     {
         $output = GT::getArray( name: 'array_bad' );
+        self::assertIsArray( $output );
+    }
+
+    public function testArrayMissing() : void
+    {
+        $output = GT::getArray( name: 'array_missing' );
         self::assertIsArray( $output );
     }
 
@@ -137,6 +163,12 @@ class TestGet extends TestCase
         self::assertIsObject( $output );
     }
 
+    public function testObjectMissing() : void
+    {
+        $output = GT::getObject( name: 'object_missing' );
+        self::assertIsObject( $output );
+    }
+
     public function testObjectNullGood() : void
     {
         $output = GT::getObjectNull( name: 'object_good' );
@@ -159,6 +191,13 @@ class TestGet extends TestCase
     public function testBoolBad() : void
     {
         $output = GT::getBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolMissing() : void
+    {
+        $output = GT::getBool( name: 'bool_missing' );
         self::assertIsBool( $output );
         self::assertFalse( $output );
     }

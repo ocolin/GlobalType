@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace Ocolin\GlobalType\tests;
+namespace Ocolin\GlobalType\Tests;
 
 use Ocolin\GlobalType\GT;
 use PHPUnit\Framework\TestCase;
@@ -15,11 +15,19 @@ class TestFiles extends TestCase
         $output = GT::filesString( name: 'string_good' );
         self::assertIsString( $output );
         self::assertEquals( 'string', $output );
+
     }
 
     public function testStringBad() : void
     {
         $output = GT::filesString( name: 'string_bad' );
+        self::assertIsString( $output );
+        self::assertEmpty( $output );
+    }
+
+    public function testStringMissing() : void
+    {
+        $output = GT::filesString( name: 'string_missing' );
         self::assertIsString( $output );
         self::assertEmpty( $output );
     }
@@ -50,7 +58,13 @@ class TestFiles extends TestCase
         $output = GT::filesInt( name: 'int_bad' );
         self::assertIsInt( $output );
         self::assertEquals( 0, $output );
+    }
 
+    public function testIntMissing() : void
+    {
+        $output = GT::filesInt( name: 'int_missing' );
+        self::assertIsInt( $output );
+        self::assertEquals( 0, $output );
     }
 
     public function testIntNullGood() : void
@@ -80,6 +94,13 @@ class TestFiles extends TestCase
         self::assertEquals( 0, $output );
     }
 
+    public function testFloatMissing() : void
+    {
+        $output = GT::filesFloat( name: 'float_missing' );
+        self::assertIsFloat( $output );
+        self::assertEquals( 0, $output );
+    }
+
     public function testFloatNullGood() : void
     {
         $output = GT::filesFloatNull( name: 'float_good' );
@@ -102,6 +123,12 @@ class TestFiles extends TestCase
     public function testArrayBad() : void
     {
         $output = GT::filesArray( name: 'array_bad' );
+        self::assertIsArray( $output );
+    }
+
+    public function testArrayMissing() : void
+    {
+        $output = GT::filesArray( name: 'array_missing' );
         self::assertIsArray( $output );
     }
 
@@ -130,6 +157,12 @@ class TestFiles extends TestCase
         self::assertIsObject( $output );
     }
 
+    public function testObjectMissing() : void
+    {
+        $output = GT::filesObject( name: 'object_missing' );
+        self::assertIsObject( $output );
+    }
+
     public function testObjectNullGood() : void
     {
         $output = GT::filesObjectNull( name: 'object_good' );
@@ -152,6 +185,13 @@ class TestFiles extends TestCase
     public function testBoolBad() : void
     {
         $output = GT::filesBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolMissing() : void
+    {
+        $output = GT::filesBool( name: 'bool_missing' );
         self::assertIsBool( $output );
         self::assertFalse( $output );
     }

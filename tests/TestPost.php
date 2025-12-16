@@ -24,6 +24,13 @@ class TestPost extends TestCase
         self::assertEmpty( $output );
     }
 
+    public function testStringMissing() : void
+    {
+        $output = GT::postString( name: 'string_missing' );
+        self::assertIsString( $output );
+        self::assertEmpty( $output );
+    }
+
     public function testStringNullGood() : void
     {
         $output = GT::postStringNull( name: 'string_good' );
@@ -50,7 +57,13 @@ class TestPost extends TestCase
         $output = GT::postInt( name: 'int_bad' );
         self::assertIsInt( $output );
         self::assertEquals( 0, $output );
+    }
 
+    public function testIntMissing() : void
+    {
+        $output = GT::postInt( name: 'int_missing' );
+        self::assertIsInt( $output );
+        self::assertEquals( 0, $output );
     }
 
     public function testIntNullGood() : void
@@ -80,6 +93,13 @@ class TestPost extends TestCase
         self::assertEquals( 0, $output );
     }
 
+    public function testFloatMissing() : void
+    {
+        $output = GT::postFloat( name: 'float_missing' );
+        self::assertIsFloat( $output );
+        self::assertEquals( 0, $output );
+    }
+
     public function testFloatNullGood() : void
     {
         $output = GT::postFloatNull( name: 'float_good' );
@@ -102,6 +122,12 @@ class TestPost extends TestCase
     public function testArrayBad() : void
     {
         $output = GT::postArray( name: 'array_bad' );
+        self::assertIsArray( $output );
+    }
+
+    public function testArrayMissing() : void
+    {
+        $output = GT::postArray( name: 'array_missing' );
         self::assertIsArray( $output );
     }
 
@@ -130,6 +156,12 @@ class TestPost extends TestCase
         self::assertIsObject( $output );
     }
 
+    public function testObjectMissing() : void
+    {
+        $output = GT::postObject( name: 'object_missing' );
+        self::assertIsObject( $output );
+    }
+
     public function testObjectNullGood() : void
     {
         $output = GT::postObjectNull( name: 'object_good' );
@@ -153,6 +185,13 @@ class TestPost extends TestCase
     public function testBoolBad() : void
     {
         $output = GT::postBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolMissing() : void
+    {
+        $output = GT::postBool( name: 'bool_missing' );
         self::assertIsBool( $output );
         self::assertFalse( $output );
     }

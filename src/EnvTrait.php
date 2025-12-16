@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace Ocolin\GlobalType;
 
+use stdClass;
+
 trait EnvTrait
 {
 
@@ -16,6 +18,7 @@ trait EnvTrait
      */
     public static function envString( string $name ) : string
     {
+        if( !isset( $_ENV[ $name ] )) { return ''; }
         return self::callString( value: $_ENV[$name] );
     }
 
@@ -29,6 +32,7 @@ trait EnvTrait
      */
     public static function envStringNull( string $name ) : string | null
     {
+        if( !isset( $_ENV[ $name ] )) { return null; }
         return self::callStringNull( value: $_ENV[$name] );
     }
 
@@ -43,6 +47,7 @@ trait EnvTrait
      */
     public static function envInt( string $name ) : int
     {
+        if( !isset( $_ENV[ $name ] )) { return 0; }
         return self::callInt( value: $_ENV[$name] );
     }
 
@@ -56,6 +61,7 @@ trait EnvTrait
      */
     public static function envIntNull( string $name ) : int | null
     {
+        if( !isset( $_ENV[ $name ] )) { return null; }
         return self::callIntNull( value: $_ENV[$name] );
     }
 
@@ -70,6 +76,7 @@ trait EnvTrait
      */
     public static function envFloat( string $name ) : float
     {
+        if( !isset( $_ENV[ $name ] )) { return 0; }
         return self::callFloat( value: $_ENV[$name] );
     }
 
@@ -83,6 +90,7 @@ trait EnvTrait
      */
     public static function envFloatNull( string $name ) : float | null
     {
+        if( !isset( $_ENV[ $name ] )) { return null; }
         return self::callFloatNull( value: $_ENV[$name] );
     }
 
@@ -97,6 +105,7 @@ trait EnvTrait
      */
     public static function envArray( string $name ) : array
     {
+        if( !isset( $_ENV[ $name ] )) { return []; }
         return self::callArray( value: $_ENV[$name] );
     }
 
@@ -110,6 +119,7 @@ trait EnvTrait
      */
     public static function envArrayNull( string $name ) : array | null
     {
+        if( !isset( $_ENV[ $name ] )) { return null; }
         return self::callArrayNull( value: $_ENV[$name] );
     }
 
@@ -124,6 +134,7 @@ trait EnvTrait
      */
     public static function envObject( string $name ) : object
     {
+        if( !isset( $_ENV[ $name ] )) { return new stdClass(); }
         return self::callObject( value: $_ENV[$name] );
     }
 
@@ -137,6 +148,7 @@ trait EnvTrait
      */
     public static function envObjectNull( string $name ) : object | null
     {
+        if( !isset( $_ENV[ $name ] )) { return null; }
         return self::callObjectNull( value: $_ENV[$name] );
     }
 
@@ -151,6 +163,7 @@ trait EnvTrait
      */
     public static function envBool( string $name ) : bool
     {
+        if( !isset( $_ENV[ $name ] )) { return false; }
         return self::callBool( value: $_ENV[$name] );
     }
 
@@ -165,6 +178,7 @@ trait EnvTrait
      */
     public static function envBoolNull( string $name ) : bool | null
     {
+        if( !isset( $_ENV[ $name ] )) { return null; }
         return self::callBoolNull( value: $_ENV[$name] );
     }
 }

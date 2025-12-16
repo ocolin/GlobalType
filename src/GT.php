@@ -37,7 +37,7 @@ use FilesTrait;
      */
     public static function callString( mixed $value ) : string
     {
-        if( !isset( $value ) OR !is_string( $value )) { return ''; }
+        if( !is_string( $value )) { return ''; }
 
         return $value;
     }
@@ -52,7 +52,7 @@ use FilesTrait;
      */
     public static function callStringNull( mixed $value ) : string | null
     {
-        if( !isset( $value ) OR !is_string( $value )) { return null; }
+        if( !is_string( $value )) { return null; }
 
         return $value;
     }
@@ -127,7 +127,7 @@ use FilesTrait;
      */
     public static function callArray( mixed $value ) : array
     {
-        if( !isset( $value ) OR !is_array( $value )) { return []; }
+        if( !is_array( $value )) { return []; }
 
         return $value;
     }
@@ -143,7 +143,7 @@ use FilesTrait;
 
     public static function callArrayNull( mixed $value ) : array | null
     {
-        if( !isset( $value ) OR !is_array( $value )) { return null; }
+        if( !is_array( $value )) { return null; }
 
         return $value;
     }
@@ -158,7 +158,7 @@ use FilesTrait;
      */
     public static function callObject( mixed $value ) : object
     {
-        if( !isset( $value ) OR !is_object( $value )) { return new stdClass(); }
+        if( !is_object( $value )) { return new stdClass(); }
 
         return $value;
     }
@@ -173,7 +173,7 @@ use FilesTrait;
      */
     public static function callObjectNull( mixed $value ) : object | null
     {
-        if( !isset( $value ) OR !is_object( $value )) { return null; }
+        if( !is_object( $value )) { return null; }
 
         return $value;
     }
@@ -189,7 +189,7 @@ use FilesTrait;
      */
     public static function callBool( mixed $value ) : bool
     {
-        if( !isset( $value ) OR !is_bool( $value )) { return false; }
+        if( !is_bool( $value )) { return false; }
 
         return $value;
     }
@@ -205,7 +205,7 @@ use FilesTrait;
      */
     public static function callBoolNull( mixed $value ) : bool | null
     {
-        if( !isset( $value ) OR !is_bool( $value )) { return null; }
+        if( !is_bool( $value )) { return null; }
 
         return $value;
     }

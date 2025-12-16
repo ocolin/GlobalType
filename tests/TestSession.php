@@ -24,6 +24,13 @@ class TestSession extends TestCase
         self::assertEmpty( $output );
     }
 
+    public function testStringMissing() : void
+    {
+        $output = GT::sessionString( name: 'string_missing' );
+        self::assertIsString( $output );
+        self::assertEmpty( $output );
+    }
+
     public function testStringNullGood() : void
     {
         $output = GT::sessionStringNull( name: 'string_good' );
@@ -50,7 +57,13 @@ class TestSession extends TestCase
         $output = GT::sessionInt( name: 'int_bad' );
         self::assertIsInt( $output );
         self::assertEquals( 0, $output );
+    }
 
+    public function testIntMissing() : void
+    {
+        $output = GT::serverInt( name: 'int_missing' );
+        self::assertIsInt( $output );
+        self::assertEquals( 0, $output );
     }
 
     public function testIntNullGood() : void
@@ -80,6 +93,13 @@ class TestSession extends TestCase
         self::assertEquals( 0, $output );
     }
 
+    public function testFloatMissing() : void
+    {
+        $output = GT::sessionFloat( name: 'float_missing' );
+        self::assertIsFloat( $output );
+        self::assertEquals( 0, $output );
+    }
+
     public function testFloatNullGood() : void
     {
         $output = GT::sessionFloatNull( name: 'float_good' );
@@ -102,6 +122,12 @@ class TestSession extends TestCase
     public function testArrayBad() : void
     {
         $output = GT::sessionArray( name: 'array_bad' );
+        self::assertIsArray( $output );
+    }
+
+    public function testArrayMissing() : void
+    {
+        $output = GT::sessionArray( name: 'array_missing' );
         self::assertIsArray( $output );
     }
 
@@ -130,6 +156,12 @@ class TestSession extends TestCase
         self::assertIsObject( $output );
     }
 
+    public function testObjectMissing() : void
+    {
+        $output = GT::sessionObject( name: 'object_missing' );
+        self::assertIsObject( $output );
+    }
+
     public function testObjectNullGood() : void
     {
         $output = GT::sessionObjectNull( name: 'object_good' );
@@ -152,6 +184,13 @@ class TestSession extends TestCase
     public function testBoolBad() : void
     {
         $output = GT::sessionBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolMissing() : void
+    {
+        $output = GT::sessionBool( name: 'bool_missing' );
         self::assertIsBool( $output );
         self::assertFalse( $output );
     }

@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace Ocolin\GlobalType;
 
+use stdClass;
+
 trait SessionTrait
 {
 
@@ -16,6 +18,7 @@ trait SessionTrait
      */
     public static function sessionString( string $name ) : string
     {
+        if( !isset( $_SESSION[ $name ] )) { return ''; }
         return self::callString( value: $_SESSION[$name] );
     }
 
@@ -29,6 +32,7 @@ trait SessionTrait
      */
     public static function sessionStringNull( string $name ) : string | null
     {
+        if( !isset( $_SESSION[ $name ] )) { return null; }
         return self::callStringNull( value: $_SESSION[$name] );
     }
 
@@ -43,6 +47,7 @@ trait SessionTrait
      */
     public static function sessionInt( string $name ) : int
     {
+        if( !isset( $_SESSION[ $name ] )) { return 0; }
         return self::callInt( value: $_SESSION[$name] );
     }
 
@@ -56,6 +61,7 @@ trait SessionTrait
      */
     public static function sessionIntNull( string $name ) : int | null
     {
+        if( !isset( $_SESSION[ $name ] )) { return null; }
         return self::callIntNull( value: $_SESSION[$name] );
     }
 
@@ -70,6 +76,7 @@ trait SessionTrait
      */
     public static function sessionFloat( string $name ) : float
     {
+        if( !isset( $_SESSION[ $name ] )) { return 0; }
         return self::callFloat( value: $_SESSION[$name] );
     }
 
@@ -83,6 +90,7 @@ trait SessionTrait
      */
     public static function sessionFloatNull( string $name ) : float | null
     {
+        if( !isset( $_SESSION[ $name ] )) { return null; }
         return self::callFloatNull( value: $_SESSION[$name] );
     }
 
@@ -97,6 +105,7 @@ trait SessionTrait
      */
     public static function sessionArray( string $name ) : array
     {
+        if( !isset( $_SESSION[ $name ] )) { return []; }
         return self::callArray( value: $_SESSION[$name] );
     }
 
@@ -110,6 +119,7 @@ trait SessionTrait
      */
     public static function sessionArrayNull( string $name ) : array | null
     {
+        if( !isset( $_SESSION[ $name ] )) { return null; }
         return self::callArrayNull( value: $_SESSION[$name] );
     }
 
@@ -124,6 +134,7 @@ trait SessionTrait
      */
     public static function sessionObject( string $name ) : object
     {
+        if( !isset( $_SESSION[ $name ] )) { return new stdClass(); }
         return self::callObject( value: $_SESSION[$name] );
     }
 
@@ -137,6 +148,7 @@ trait SessionTrait
      */
     public static function sessionObjectNull( string $name ) : object | null
     {
+        if( !isset( $_SESSION[ $name ] )) { return null; }
         return self::callObjectNull( value: $_SESSION[$name] );
     }
 
@@ -151,6 +163,7 @@ trait SessionTrait
      */
     public static function sessionBool( string $name ) : bool
     {
+        if( !isset( $_SESSION[ $name ] )) { return false; }
         return self::callBool( value: $_SESSION[$name] );
     }
 
@@ -165,6 +178,7 @@ trait SessionTrait
      */
     public static function sessionBoolNull( string $name ) : bool | null
     {
+        if( !isset( $_SESSION[ $name ] )) { return null; }
         return self::callBoolNull( value: $_SESSION[$name] );
     }
 }

@@ -13,6 +13,7 @@ class TestGlobals extends TestCase
     public function testStringGood() : void
     {
         $output = GT::globalsString( name: 'string_good' );
+        var_dump( $output );
         self::assertIsString( $output );
         self::assertEquals( 'string', $output );
     }
@@ -20,6 +21,13 @@ class TestGlobals extends TestCase
     public function testStringBad() : void
     {
         $output = GT::globalsString( name: 'string_bad' );
+        self::assertIsString( $output );
+        self::assertEmpty( $output );
+    }
+
+    public function testStringMissing() : void
+    {
+        $output = GT::globalsString( name: 'string_missing' );
         self::assertIsString( $output );
         self::assertEmpty( $output );
     }
@@ -50,7 +58,13 @@ class TestGlobals extends TestCase
         $output = GT::globalsInt( name: 'int_bad' );
         self::assertIsInt( $output );
         self::assertEquals( 0, $output );
+    }
 
+    public function testIntMissing() : void
+    {
+        $output = GT::globalsInt( name: 'int_missing' );
+        self::assertIsInt( $output );
+        self::assertEquals( 0, $output );
     }
 
     public function testIntNullGood() : void
@@ -80,6 +94,13 @@ class TestGlobals extends TestCase
         self::assertEquals( 0, $output );
     }
 
+    public function testFloatMissing() : void
+    {
+        $output = GT::globalsFloat( name: 'float_missing' );
+        self::assertIsFloat( $output );
+        self::assertEquals( 0, $output );
+    }
+
     public function testFloatNullGood() : void
     {
         $output = GT::globalsFloatNull( name: 'float_good' );
@@ -102,6 +123,12 @@ class TestGlobals extends TestCase
     public function testArrayBad() : void
     {
         $output = GT::globalsArray( name: 'array_bad' );
+        self::assertIsArray( $output );
+    }
+
+    public function testArrayMissing() : void
+    {
+        $output = GT::globalsArray( name: 'array_missing' );
         self::assertIsArray( $output );
     }
 
@@ -130,6 +157,12 @@ class TestGlobals extends TestCase
         self::assertIsObject( $output );
     }
 
+    public function testObjectMissing() : void
+    {
+        $output = GT::globalsObject( name: 'object_missing' );
+        self::assertIsObject( $output );
+    }
+
     public function testObjectNullGood() : void
     {
         $output = GT::globalsObjectNull( name: 'object_good' );
@@ -152,6 +185,13 @@ class TestGlobals extends TestCase
     public function testBoolBad() : void
     {
         $output = GT::globalsBool( name: 'bool_bad' );
+        self::assertIsBool( $output );
+        self::assertFalse( $output );
+    }
+
+    public function testBoolMissing() : void
+    {
+        $output = GT::globalsBool( name: 'bool_missing' );
         self::assertIsBool( $output );
         self::assertFalse( $output );
     }

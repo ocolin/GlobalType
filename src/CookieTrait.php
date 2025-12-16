@@ -4,6 +4,8 @@ declare( strict_types = 1 );
 
 namespace Ocolin\GlobalType;
 
+use stdClass;
+
 trait CookieTrait
 {
 
@@ -16,6 +18,7 @@ trait CookieTrait
      */
     public static function cookieString( string $name ) : string
     {
+        if( !isset( $_COOKIE[ $name ] )) { return ''; }
         return self::callString( value: $_COOKIE[$name] );
     }
 
@@ -29,6 +32,7 @@ trait CookieTrait
      */
     public static function cookieStringNull( string $name ) : string | null
     {
+        if( !isset( $_COOKIE[ $name ] )) { return null; }
         return self::callStringNull( value: $_COOKIE[$name] );
     }
 
@@ -43,6 +47,7 @@ trait CookieTrait
      */
     public static function cookieInt( string $name ) : int
     {
+        if( !isset( $_COOKIE[ $name ] )) { return 0; }
         return self::callInt( value: $_COOKIE[$name] );
     }
 
@@ -56,6 +61,7 @@ trait CookieTrait
      */
     public static function cookieIntNull( string $name ) : int | null
     {
+        if( !isset( $_COOKIE[ $name ] )) { return null; }
         return self::callIntNull( value: $_COOKIE[$name] );
     }
 
@@ -70,6 +76,7 @@ trait CookieTrait
      */
     public static function cookieFloat( string $name ) : float
     {
+        if( !isset( $_COOKIE[ $name ] )) { return 0; }
         return self::callFloat( value: $_COOKIE[$name] );
     }
 
@@ -83,6 +90,7 @@ trait CookieTrait
      */
     public static function cookieFloatNull( string $name ) : float | null
     {
+        if( !isset( $_COOKIE[ $name ] )) { return null; }
         return self::callFloatNull( value: $_COOKIE[$name] );
     }
 
@@ -97,6 +105,7 @@ trait CookieTrait
      */
     public static function cookieArray( string $name ) : array
     {
+        if( !isset( $_COOKIE[ $name ] )) { return []; }
         return self::callArray( value: $_COOKIE[$name] );
     }
 
@@ -110,6 +119,7 @@ trait CookieTrait
      */
     public static function cookieArrayNull( string $name ) : array | null
     {
+        if( !isset( $_COOKIE[ $name ] )) { return null; }
         return self::callArrayNull( value: $_COOKIE[$name] );
     }
 
@@ -124,6 +134,7 @@ trait CookieTrait
      */
     public static function cookieObject( string $name ) : object
     {
+        if( !isset( $_COOKIE[ $name ] )) { return new stdClass (); }
         return self::callObject( value: $_COOKIE[$name] );
     }
 
@@ -137,6 +148,7 @@ trait CookieTrait
      */
     public static function cookieObjectNull( string $name ) : object | null
     {
+        if( !isset( $_COOKIE[ $name ] )) { return null; }
         return self::callObjectNull( value: $_COOKIE[$name] );
     }
 
@@ -151,6 +163,7 @@ trait CookieTrait
      */
     public static function cookieBool( string $name ) : bool
     {
+        if( !isset( $_COOKIE[ $name ] )) { return false; }
         return self::callBool( value: $_COOKIE[$name] );
     }
 
@@ -165,6 +178,7 @@ trait CookieTrait
      */
     public static function cookieBoolNull( string $name ) : bool | null
     {
+        if( !isset( $_COOKIE[ $name ] )) { return null; }
         return self::callBoolNull( value: $_COOKIE[$name] );
     }
 }
