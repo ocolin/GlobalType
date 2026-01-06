@@ -6,25 +6,25 @@ namespace Ocolin\GlobalType;
 
 use stdClass;
 
+use function is_string;
+use function is_int;
+use function is_numeric;
+use function is_float;
+use function is_array;
+use function is_object;
+use function is_bool;
+
 class GT
 {
 
 use GetTrait;
-
 use PostTrait;
-
 use EnvTrait;
-
 use RequestTrait;
-
 use ServerTrait;
-
 use SessionTrait;
-
 use GlobalsTrait;
-
 use CookieTrait;
-
 use FilesTrait;
 
 
@@ -37,7 +37,7 @@ use FilesTrait;
      */
     public static function callString( mixed $value ) : string
     {
-        if( !is_string( $value )) { return ''; }
+        if( !is_string( value: $value )) { return ''; }
 
         return $value;
     }
@@ -52,7 +52,7 @@ use FilesTrait;
      */
     public static function callStringNull( mixed $value ) : string | null
     {
-        if( !is_string( $value )) { return null; }
+        if( !is_string( value: $value )) { return null; }
 
         return $value;
     }
@@ -67,7 +67,9 @@ use FilesTrait;
      */
     public static function callInt( mixed $value ) : int
     {
-        if( is_int( $value ) OR is_numeric( $value ) ) { return (int)$value; }
+        if( is_int( value: $value ) OR is_numeric( value: $value ) ) {
+            return (int)$value;
+        }
 
         return 0;
     }
@@ -82,7 +84,9 @@ use FilesTrait;
      */
     public static function callIntNull( mixed $value ) : int | null
     {
-        if( is_int( $value ) OR is_numeric( $value ) ) { return (int)$value; }
+        if( is_int( value: $value ) OR is_numeric( value: $value ) ) {
+            return (int)$value;
+        }
 
         return null;
     }
@@ -97,7 +101,9 @@ use FilesTrait;
      */
     public static function callFloat( mixed $value ) : float
     {
-        if( is_float( $value ) OR is_numeric( $value )) { return (float)$value; }
+        if( is_float( value: $value ) OR is_numeric( value: $value )) {
+            return (float)$value;
+        }
 
         return 0;
     }
@@ -112,7 +118,9 @@ use FilesTrait;
      */
     public static function callFloatNull( mixed $value ) : float | null
     {
-        if( is_float( $value ) OR is_numeric( $value )) { return (float)$value; }
+        if( is_float( value: $value ) OR is_numeric( value: $value )) {
+            return (float)$value;
+        }
 
         return null;
     }
@@ -127,7 +135,7 @@ use FilesTrait;
      */
     public static function callArray( mixed $value ) : array
     {
-        if( !is_array( $value )) { return []; }
+        if( !is_array( value: $value )) { return []; }
 
         return $value;
     }
@@ -143,7 +151,7 @@ use FilesTrait;
 
     public static function callArrayNull( mixed $value ) : array | null
     {
-        if( !is_array( $value )) { return null; }
+        if( !is_array( value: $value )) { return null; }
 
         return $value;
     }
@@ -158,7 +166,7 @@ use FilesTrait;
      */
     public static function callObject( mixed $value ) : object
     {
-        if( !is_object( $value )) { return new stdClass(); }
+        if( !is_object( value: $value )) { return new stdClass(); }
 
         return $value;
     }
@@ -173,7 +181,7 @@ use FilesTrait;
      */
     public static function callObjectNull( mixed $value ) : object | null
     {
-        if( !is_object( $value )) { return null; }
+        if( !is_object( value: $value )) { return null; }
 
         return $value;
     }
@@ -189,7 +197,7 @@ use FilesTrait;
      */
     public static function callBool( mixed $value ) : bool
     {
-        if( !is_bool( $value )) { return false; }
+        if( !is_bool( value: $value )) { return false; }
 
         return $value;
     }
@@ -205,7 +213,7 @@ use FilesTrait;
      */
     public static function callBoolNull( mixed $value ) : bool | null
     {
-        if( !is_bool( $value )) { return null; }
+        if( !is_bool( value: $value )) { return null; }
 
         return $value;
     }
