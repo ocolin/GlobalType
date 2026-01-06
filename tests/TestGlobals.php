@@ -13,7 +13,6 @@ class TestGlobals extends TestCase
     public function testStringGood() : void
     {
         $output = GT::globalsString( name: 'string_good' );
-        var_dump( $output );
         self::assertIsString( $output );
         self::assertEquals( 'string', $output );
     }
