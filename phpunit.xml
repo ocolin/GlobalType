@@ -5,24 +5,25 @@
         beStrictAboutChangesToGlobalState="true"
         cacheDirectory=".phpunit.cache"
         displayDetailsOnTestsThatTriggerWarnings="true"
+        displayDetailsOnTestsThatTriggerNotices="true"
+        displayDetailsOnTestsThatTriggerDeprecations="true"
 >
     <testsuites>
         <testsuite name="tests">
-            <file>tests/TestStrings.php</file>
-            <file>tests/TestInts.php</file>
-            <file>tests/TestFloats.php</file>
-            <file>tests/TestArrays.php</file>
-            <file>tests/TestObjects.php</file>
-            <file>tests/TestBool.php</file>
-            <file>tests/TestCookies.php</file>
-            <file>tests/TestEnv.php</file>
-            <file>tests/TestFiles.php</file>
-            <file>tests/TestGlobals.php</file>
-            <file>tests/TestPost.php</file>
-            <file>tests/TestRequest.php</file>
-            <file>tests/TestServer.php</file>
-            <file>tests/TestSession.php</file>
-            <file>tests/TestGet.php</file>
+           <directory>tests</directory>
         </testsuite>
     </testsuites>
+
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+
+    <coverage>
+        <report>
+            <html outputDirectory="coverage"/>
+            <text outputFile="php://stdout" showOnlySummary="true"/>
+        </report>
+    </coverage>
 </phpunit>
