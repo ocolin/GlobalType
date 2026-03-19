@@ -1,53 +1,77 @@
 # GlobalType
-
 ## Description
 
-A simple utility for getting values from Global variables as a specific type. Rather than having to type check them when you know what type to expect, this can ensure those globals are of the right type.
+GlobalType is a simple library that allows type checks on global arrays. Because by default the array elements are mixed, one has to check the element type before using. This library makes it easier to tell PHP what type you are expecting from a global array.
 
-## Globals supported
+## Requirements
 
-* $_ENV
-* $_POST
-* $_GET
-* $_REQUEST
-* $_SESSION
-* $_SERVER
-* $_REQUEST
-* $_FILES
-* $_COOKIES
-* $GLOBALS
+The only requirement is PHP version 8.0 or higher. 
 
-## Types supported
+## Installation
 
-* string
-* int
-* float
-* array
-* object
-* bool
+composer require ocolin/global-type
 
-## Format
+## Usage
 
-Functions are all static and come in two modes. One for returning a type even if the input is the wrong type, and one for returning null if the type is wrong.
+### Available Classes
 
-### GET - Examples
+GlobalType has a class for each of the PHP Globals:
+
+| Class | Global|
+|-------|-------|
+|   COOKIE::class    |    $_COOKIE   |
+|    ENV::class   |    $_ENV   |
+|    FILES::class   |   $_FILES    |
+|    GET::class   |   $_GET    |
+|    GLOBALS::class   |   $GLOBALS    |
+|    POST::class    |   $_POST    |
+|   REQUEST::class    |   $_REQUEST    |
+|   SERVER::class    |   $_SERVER    |
+|   SESSION::class    |   $_SESSION    |
+
+
+### Available Methods
+
+Every class shares the same functions which are used on the classes corresponding PHP Global
+
+| Method | Description                           |
+|--------|---------------------------------------|
+| getString | Return a string or '' if not found.   |
+| getStringNull | Return a string or null if not found. |
+| getInt | Return an int or 0 if not found.      |
+| getIntNull | Return an int or null if not found.   |
+| getFloat | Return a float or 0.0 if not found.   |
+| getFloatNull | Return a float of null if not found. |
+| getBool | Return a bool or false if not found. |
+| getBoolNull | Return a bool or null if not found. |
+| getArray | Return an array or [] if not found. |
+| getArrayNull | Return an array or null if not found. |
+|    getObject    |    Return same object or null if not found.                                   |
+
+
+### Arguments
+
+Both the Null and non-Null methods take a name parameter, while the Null methods only take a name argument.
+
+- name - The name of the array key in the targeted PHP global.
+- default -  If the element is not found or the type does not match, you can return a default value of your choice.
+
+
+### Basic Usage
 
 ```php
-$output = Ocolin\GlobalType\GT::getSring( name: 'value' );
-$output = Ocolin\GlobalType\GT::getSringNull( name: 'value' );
-$output = Ocolin\GlobalType\GT::getInt( name: 'value' );
-$output = Ocolin\GlobalType\GT::getIntNull( name: 'value' );
-$output = Ocolin\GlobalType\GT::getFloat( name: 'value' );
-$output = Ocolin\GlobalType\GT::getFloatNull( name: 'value' );
-$output = Ocolin\GlobalType\GT::getArray( name: 'value' );
-$output = Ocolin\GlobalType\GT::getArrayNull( name: 'value' );
-$output = Ocolin\GlobalType\GT::getObject( name: 'value' );
-$output = Ocolin\GlobalType\GT::getObjectNull( name: 'value' );
-$output = Ocolin\GlobalType\GT::getBool( name: 'value' );
-$output = Ocolin\GlobalType\GT::getBoolNull( name: 'value' );
-```
-The input parameter is always the name of the global variable. The type of global will be the name of the global type in lowercase as the prefix of the function name.
+use Ocolin\GlobalType\GET;
+$_GET['parameter'] = 'value';
 
-```
-$output = Ocolin\GlobalType\GT::{global name}{type}{null}( name: '{var name}');
+$value = GET::getString( name: 'parameter' );
+// string(5) "value"
+
+$value = GET::getInt( name: 'parameter' );
+// int(0)
+
+$value = GET::getIntNull( name: 'parameter' );
+// NULL
+
+$value = GET::getInt( name: 'parameter', default: 777 );
+//int(777)
 ```

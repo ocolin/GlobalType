@@ -6,215 +6,264 @@ namespace Ocolin\GlobalType;
 
 use stdClass;
 
-use function is_string;
-use function is_int;
-use function is_numeric;
-use function is_float;
-use function is_array;
-use function is_object;
-use function is_bool;
-
-class GT
+abstract class GT
 {
-
-use GetTrait;
-use PostTrait;
-use EnvTrait;
-use RequestTrait;
-use ServerTrait;
-use SessionTrait;
-use GlobalsTrait;
-use CookieTrait;
-use FilesTrait;
+    /**
+     * @return array<mixed> Global to check.
+     */
+    abstract protected static function source(): array;
 
 
-/* GET STRING
+/* GET STRING VALUE
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return string Variable or empty string if not a string.
+     * @param string $name Name of global property.
+     * @param string|null $default Optional string to return.
+     * @return string String to return.
      */
-    public static function callString( mixed $value ) : string
+    public static function getString( string $name, ?string $default = null ) : string
     {
-        if( !is_string( value: $value )) { return ''; }
+        $global = static::source();
 
-        return $value;
+        if( isset( $global[$name]) AND is_string( $global[$name] )) {
+            return $global[$name];
+        }
+
+        return $default ?? '';
     }
 
 
-/* GET STRING OR NULL
+/* GET STRING VALUE OR NULL
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return string|null Variable or null if not a string.
+     * @param string $name Name of global property
+     * @return string|null String to return.
      */
-    public static function callStringNull( mixed $value ) : string | null
+    public static function getStringNull( string $name ) : ?string
     {
-        if( !is_string( value: $value )) { return null; }
+        $global = static::source();
 
-        return $value;
+        if( isset( $global[$name]) AND is_string( $global[$name] )) {
+            return $global[$name];
+        }
+
+        return null;
     }
+
 
 
 /* GET INTEGER
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return int Integer or zero if not an int.
+     * @param string $name Name of global property
+     * @param int|null $default Optional integer to return.
+     * @return int Integer to return.
      */
-    public static function callInt( mixed $value ) : int
+    public static function getInt( string $name, ?int $default = null ) : int
     {
-        if( is_int( value: $value ) OR is_numeric( value: $value ) ) {
-            return (int)$value;
+        $global = static::source();
+
+        if( isset( $global[$name]) AND is_numeric( $global[$name] )) {
+            return (int)$global[$name];
         }
 
-        return 0;
+        return $default ?? 0;
     }
+
 
 
 /* GET INTEGER OR NULL
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return int|null Variable or null if not an int.
+     * @param string $name Name of global property.
+     * @return int|null Integer or null ro return.
      */
-    public static function callIntNull( mixed $value ) : int | null
+    public static function getIntNull( string $name ) : ?int
     {
-        if( is_int( value: $value ) OR is_numeric( value: $value ) ) {
-            return (int)$value;
+        $global = static::source();
+
+        if( isset( $global[$name]) AND is_numeric( $global[$name] )) {
+            return (int)$global[$name];
         }
 
         return null;
     }
+
 
 
 /* GET FLOAT
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return float Variable or zero if not a float.
+     * @param string $name Name of global property.
+     * @param float|null $default Optional float to return.
+     * @return float Float to return.
      */
-    public static function callFloat( mixed $value ) : float
+    public static function getFloat( string $name, ?float $default = null ) : float
     {
-        if( is_float( value: $value ) OR is_numeric( value: $value )) {
-            return (float)$value;
+        $global = static::source();
+
+        if( isset( $global[$name]) AND is_numeric( $global[$name] )) {
+            return (float)$global[$name];
         }
 
-        return 0;
+        return $default ?? 0.0;
     }
+
 
 
 /* GET FLOAT OR NULL
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return float|null Variable or null if not a float.
+     * @param string $name Name of global property.
+     * @return float|null Float or null to return.
      */
-    public static function callFloatNull( mixed $value ) : float | null
+    public static function getFloatNull( string $name ) : ?float
     {
-        if( is_float( value: $value ) OR is_numeric( value: $value )) {
-            return (float)$value;
+        $global = static::source();
+
+        if( isset( $global[$name]) AND is_numeric( $global[$name] )) {
+            return (float)$global[$name];
         }
 
         return null;
     }
 
 
+
+/* GET BOOL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of global property
+     * @param bool|null $default Boolean to return.
+     * @return bool
+     */
+    public static function getBool( string $name, ?bool $default = null ) : bool
+    {
+        $global = static::source();
+
+        if( isset( $global[$name])) {
+            $result = filter_var(
+                  value: $global[$name],
+                 filter: FILTER_VALIDATE_BOOLEAN,
+                options: FILTER_NULL_ON_FAILURE
+            );
+            if( $result !== null ) { return $result; }
+        }
+
+        return $default ?? false;
+    }
+
+
+
+/* GET BOOL OR NULL
+----------------------------------------------------------------------------- */
+
+    /**
+     * @param string $name Name of global property.
+     * @return bool|null Boolean or null to return.
+     */
+    public static function getBoolNull( string $name ) : ?bool
+    {
+        $global = static::source();
+
+        if( isset( $global[$name])) {
+            $result = filter_var(
+                  value: $global[$name],
+                 filter: FILTER_VALIDATE_BOOLEAN,
+                options: FILTER_NULL_ON_FAILURE
+            );
+            if( $result !== null ) { return $result; }
+        }
+
+        return null;
+    }
+
+
+
 /* GET ARRAY
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return array<mixed> Variable or empty array if not an array.
+     * @param string $name Name of global property.
+     * @param array<mixed>|null $default Optional array to return.
+     * @return array<mixed> Array to return.
      */
-    public static function callArray( mixed $value ) : array
+    public static function getArray( string $name, ?array $default = null ) : array
     {
-        if( !is_array( value: $value )) { return []; }
+        $global = static::source();
 
-        return $value;
+        if( isset( $global[$name]) AND is_array( $global[$name] )) {
+            return $global[$name];
+        }
+
+        return $default ?? [];
     }
+
 
 
 /* GET ARRAY OR NULL
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check
-     * @return array<mixed>|null Value or null if not matching type.
+     * @param string $name Name of global property.
+     * @return array<mixed>|null Array or null.
      */
-
-    public static function callArrayNull( mixed $value ) : array | null
+    public static function getArrayNull( string $name ) : ?array
     {
-        if( !is_array( value: $value )) { return null; }
+        $global = static::source();
 
-        return $value;
+        if( isset( $global[$name]) AND is_array( $global[$name] )) {
+            return $global[$name];
+        }
+
+        return null;
     }
+
 
 
 /* GET OBJECT
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return object Variable or empty object if not an object.
+     * @param string $name Name of global property.
+     * @param object|null $default Optional object.
+     * @return object Object to return.
      */
-    public static function callObject( mixed $value ) : object
+    public static function getObject( string $name, ?object $default = null ) : object
     {
-        if( !is_object( value: $value )) { return new stdClass(); }
+        $global = static::source();
 
-        return $value;
+        if( isset( $global[$name]) AND is_object( $global[$name] )) {
+            return $global[$name];
+        }
+
+        return $default ?? new stdClass;
     }
+
 
 
 /* GET OBJECT OR NULL
 ----------------------------------------------------------------------------- */
 
     /**
-     * @param mixed $value Value to check.
-     * @return object|null Variable or null if not an object.
+     * @param string $name Name of global property.
+     * @return object|null Object or null.
      */
-    public static function callObjectNull( mixed $value ) : object | null
+    public static function getObjectNull( string $name ) : ?object
     {
-        if( !is_object( value: $value )) { return null; }
+        $global = static::source();
 
-        return $value;
-    }
+        if( isset( $global[$name]) AND is_object( $global[$name] )) {
+            return $global[$name];
+        }
 
-
-
-/* GET BOOL
------------------------------------------------------------------------------ */
-
-    /**
-     * @param mixed $value Variable to check.
-     * @return bool Variable or false if not a boolean.
-     */
-    public static function callBool( mixed $value ) : bool
-    {
-        if( !is_bool( value: $value )) { return false; }
-
-        return $value;
-    }
-
-
-
-/* GET BOOL
------------------------------------------------------------------------------ */
-
-    /**
-     * @param mixed $value Value to check.
-     * @return bool|null Variable or null if not bool.
-     */
-    public static function callBoolNull( mixed $value ) : bool | null
-    {
-        if( !is_bool( value: $value )) { return null; }
-
-        return $value;
+        return null;
     }
 }
